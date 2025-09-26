@@ -20,7 +20,7 @@ RUN mvn clean install -DskipTests
 # It usually follows the pattern: <artifactId>-<version>.jar
 # Assuming your pom.xml artifactId is 'scientific-calculator' and version is '1.0-SNAPSHOT'
 # Replace the artifact name if yours is different!
-ENV ARTIFACT_NAME="SciCalc-1.0-SNAPSHOT.jar"
+ENV ARTIFACT_NAME="scientific-calculator-executable.jar"
 
 # Stage 2: The Runtime Stage (Uses a minimal JRE to run the application)
 # This uses a much smaller image that only contains the Java Runtime Environment (JRE)
@@ -35,4 +35,6 @@ COPY --from=build /app/target/${ARTIFACT_NAME} app.jar
 
 # Define the command to run the application when the container starts.
 # This explicitly tells Java to run your specific Main class.
-ENTRYPOINT ["java", "-cp", "app.jar", "org.example.Main"]
+#ENTRYPOINT ["java", "-cp", "app.jar", "org.example.Main"]
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
