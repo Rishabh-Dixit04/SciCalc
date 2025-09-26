@@ -1,0 +1,41 @@
+---
+- name: Deploy Scientific Calculator Docker Container
+  hosts: calculator_hosts
+  gather_facts: no
+
+  vars:
+    docker_image: "rishabh720/scientific-calculator:latest"
+    container_name: "scientific_calculator_app"
+
+  tasks:
+    - name: Ensure Docker service is running
+      ansible.builtin.service:
+        name: docker
+        state: started
+      become: yes
+
+    - name: Stop and remove existing container (if it exists)
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        state: absent
+        force_kill: yes
+      ignore_errors: yes
+      become: yes
+
+    - name: Pull the latest Docker image from Docker Hub
+      community.docker.docker_image:
+        name: "{{ docker_image }}"
+        source: pull
+      become: yes
+
+    - name: Run the scientific calculator container on the managed host
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ docker_image }}"
+        state: started
+        detach: yes
+      become: yes
+
+    - name: Verification message
+      ansible.builtin.debug:
+        msg: "The scientific calculator is running in container '{{ container_name }}'. Use 'docker logs {{ container_name }}' to interact."
