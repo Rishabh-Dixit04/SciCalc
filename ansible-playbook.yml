@@ -33,6 +33,8 @@
         name: "{{ container_name }}"
         image: "{{ docker_image }}"
         state: started
+        tty: yes          # Allocate a pseudo-TTY
+        interactive: yes  # Keep STDIN open
         detach: yes
       become: yes
 
