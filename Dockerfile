@@ -1,6 +1,6 @@
 # Stage 1: The Build Stage (Uses a full JDK to compile the code and build the JAR)
 # We use a base image with Java Development Kit (JDK) and Maven pre-installed
-FROM maven:3.9.8-openjdk-21 AS build
+FROM maven:3.9.8-jdk-21 AS build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -22,7 +22,7 @@ ENV ARTIFACT_NAME="SciCalc-1.0-SNAPSHOT.jar"
 
 # Stage 2: The Runtime Stage (Uses a minimal JRE to run the application)
 # This uses a much smaller image that only contains the Java Runtime Environment (JRE)
-FROM openjdk:21-jre-slim
+FROM openjdk:21-slim-buster
 
 # Set the working directory where the application will run
 WORKDIR /usr/app
