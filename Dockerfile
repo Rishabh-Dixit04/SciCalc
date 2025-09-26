@@ -1,6 +1,6 @@
 # Stage 1: The Build Stage (Uses a full JDK to compile the code and build the JAR)
 # We use a base image with Java Development Kit (JDK) and Maven pre-installed
-FROM maven:3.9.8-jdk-21 AS build
+FROM maven:3.9.6-openjdk-21-slim AS build
 
 # Set the working directory inside the container
 WORKDIR /app
