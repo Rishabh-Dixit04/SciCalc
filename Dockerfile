@@ -30,8 +30,12 @@ FROM eclipse-temurin:21-jre-alpine
 # Set the working directory where the application will run
 WORKDIR /usr/app
 
-# Copy the generated JAR file from the 'build' stage to this runtime stage
-COPY --from=build /app/target/${ARTIFACT_NAME} app.jar
+## Copy the generated JAR file from the 'build' stage to this runtime stage
+#COPY --from=build /app/target/${ARTIFACT_NAME} app.jar
+
+# CRITICAL FIX: Copy the specific EXECUTABLE JAR (renamed by Shade Plugin)
+# and give it the generic name 'app.jar' in the final image.
+COPY --from=build /app/target/scientific-calculator-executable.jar app.jar
 
 # Define the command to run the application when the container starts.
 # This explicitly tells Java to run your specific Main class.
