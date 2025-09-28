@@ -28,6 +28,7 @@ pipeline {
     }
 
     // 3. Stages: The main sequence of steps in the CI process.
+
     stages {
         // Stage 1: Checkout/SCM (Pull GitHub repo)
         stage('Pull GitHub Repo') {
