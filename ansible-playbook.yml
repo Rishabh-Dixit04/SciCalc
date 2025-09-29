@@ -38,6 +38,7 @@
         detach: yes
       become: yes
 
+
     - name: Verification message
       ansible.builtin.debug:
         msg: "The scientific calculator is running in container '{{ container_name }}'. Use 'docker logs {{ container_name }}' to interact."
