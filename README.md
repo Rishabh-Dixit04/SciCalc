@@ -5,7 +5,7 @@ This project implements a command-line Scientific Calculator in Java and wraps t
 The application provides a user menu for the following operations:
 * Square root ($\sqrt{x}$)
 * Factorial ($x!$)
-* Natural Logarithm (ln(x))
+* Natural Logarithm ($\ln(x)$)
 * Power ($x^b$)
 
 The project utilizes a toolchain including **GitHub** (SCM), **Maven/JUnit** (Build/Test), **Jenkins** (CI), **Docker** (Containerization), and **Ansible** (Deployment).
