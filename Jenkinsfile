@@ -1,25 +1,19 @@
-// Jenkinsfile (Declarative Pipeline)
-// This file is stored in SCM and defines the entire CI/CD process.
+
 
 pipeline {
-    // Defines where the pipeline runs (e.g., on the Jenkins agent)
     agent any
 
-    // 1. Tool Definitions: Define the versions globally for use in stages
     tools {
-        // These names must match the configuration in Manage Jenkins > Tools
         jdk 'Java_21_Home'
         maven 'Bundled (Maven 3)'
     }
 
-    // 2. Environment: Define variables used throughout the pipeline.
     environment {
         DOCKER_HUB_USERNAME = 'rishabh720'
-        DOCKER_CREDENTIAL_ID = 'docker-hub-credentials-id' // Jenkins ID for Docker Hub credentials
+        DOCKER_CREDENTIAL_ID = 'docker-hub-credentials-id'
         GIT_REPO_URL = 'https://github.com/Rishabh-Dixit04/SciCalc.git'
         GIT_BRANCH = 'master'
 
-        // Email Recipient for the notification
         EMAIL_RECIPIENT = 'rishabhdixit.in@gmail.com'
         // ----------------------------------
 
@@ -88,7 +82,6 @@ pipeline {
         }
     }
 
-    // Send email about pipeline success/failure
     post {
         // Runs regardless of success/failure
         always {
